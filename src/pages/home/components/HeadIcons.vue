@@ -1,7 +1,7 @@
 <template>
     <div class="icon-box">
         <swiper class="wraper" :options="swiperOption">
-            <swiper-slide v-for="(item,index) in pages" :key="index">
+            <swiper-slide v-for="(item,index) of pages" :key="index">
             <div class="icon" v-for="val in item" :key="val.id">
                 <div class="home-icon">
                     <img class="icon-img" :src="val.imgUrl" alt="">
@@ -53,24 +53,32 @@
                     id:'009',
                     imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
                     desc:'夏日玩水'
-                },],
+                },{
+                    id:'009',
+                    imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
+                    desc:'夏日玩水'
+                }],
                 swiperOption: {
 
-                },
-                computed: {
-                    pages () {
-                        const pages=[]
-                        this.iconList.forEach((item,index) => {
-                            console.log(item,page)
-                            const page=Math.floor(index / 8)
-                            if(!pages[page]){
-                                pages[page]=[]
-                            }
-                            pages[page].push(item)
-                        })
-                        return pages
-                    }
                 }
+            }
+        },
+        computed: {
+            pages () {
+                const pages = []
+                this.iconList.forEach((item,index) => {
+                    console.log(item,index)
+                    const page = Math.floor(index / 8)
+                    if(!pages[page]){
+                        pages[page]=[]
+                    }else{
+                        pages[page].push(item)
+                    }
+                    console.log(page)
+                })
+                
+                console.log(pages)
+                return pages
             }
         }
     }
