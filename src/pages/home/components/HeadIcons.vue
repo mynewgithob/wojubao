@@ -1,13 +1,13 @@
 <template>
     <div class="icon-box">
         <swiper class="wraper" :options="swiperOption">
-            <swiper-slide v-for="(item,index) of pages" :key="index">
-            <div class="icon" v-for="val in item" :key="val.id">
-                <div class="home-icon">
-                    <img class="icon-img" :src="val.imgUrl" alt="">
+            <swiper-slide v-for="(item,index) of pagesAll" :key="index">
+                <div class="icon" v-for="val in item" :key="val.id">
+                    <div class="home-icon">
+                        <img class="icon-img" :src="val.imgUrl" alt="">
+                    </div>
+                    <p class="home-title">{{val.desc}}</p>
                 </div>
-                <p class="home-title">{{val.desc}}</p>
-            </div>
             </swiper-slide>
         </swiper>
     </div>    
@@ -54,7 +54,7 @@
                     imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
                     desc:'夏日玩水'
                 },{
-                    id:'009',
+                    id:'03',
                     imgUrl:'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
                     desc:'夏日玩水'
                 }],
@@ -64,19 +64,17 @@
             }
         },
         computed: {
-            pages () {
+            pagesAll () {
                 const pages = []
                 this.iconList.forEach((item,index) => {
                     console.log(item,index)
                     const page = Math.floor(index / 8)
                     if(!pages[page]){
-                        pages[page]=[]
-                    }else{
-                        pages[page].push(item)
+                        pages[page] = []
                     }
-                    console.log(page)
+                    pages[page].push(item)
+                    
                 })
-                
                 console.log(pages)
                 return pages
             }
