@@ -1,11 +1,8 @@
 <template>
 <div class="wrapper">
     <swiper :options="swiperOption" ref="mySwiper" >
-        <swiper-slide>
-            <img class="swipe-img" src="http://img1.qunarzz.com/piao/fusion/1806/f5/ea83238744f31102.jpg_750x200_73b8477c.jpg" alt="去哪儿门票" style="opacity: 1;">
-        </swiper-slide>
-        <swiper-slide>
-            <img class="swipe-img" src="http://img1.qunarzz.com/piao/fusion/1806/38/ab7ab660adc68602.jpg_750x200_e8fde60e.jpg" alt="去哪儿门票" style="opacity: 1;">
+        <swiper-slide v-for='item in list' :key='item.id'>
+            <img class="swipe-img" :src="item.imgUrl" alt="去哪儿门票" style="opacity: 1;">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -22,6 +19,9 @@ export default {
                 autoplay:3000
             }
         }
+    },
+    props:{
+        list:Array
     }
 }
 </script>

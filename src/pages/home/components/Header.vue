@@ -7,10 +7,12 @@
       <span class="iconfont">&#xe615;</span> 
        输入城市/景点/游玩主题
     </div>
-    <div class="header-right">
-       城市
-      <span class="iconfont right-icon">&#xe600;</span>
-    </div>
+    <router-link to='/city'>
+      <div class="header-right">
+        城市
+        <span class="iconfont right-icon">&#xe600;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 <script>
@@ -23,8 +25,8 @@
   .header
     display:flex
     background:$wnbck
-    height:.43rem;
-    line-height :.43rem
+    height:$headerHeight
+    line-height :$headerHeight
     font-size :.16rem
     color:#fff
   .header-left 
@@ -45,6 +47,7 @@
     width:.62rem
     float:right
     text-align:center
+    color #fff
     .right-icon
       font-size :.12rem
   

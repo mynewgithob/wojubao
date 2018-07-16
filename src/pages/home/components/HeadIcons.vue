@@ -63,11 +63,13 @@
                 }
             }
         },
+        props:{
+            iconlist:Array
+        },
         computed: {
             pagesAll () {
                 const pages = []
-                this.iconList.forEach((item,index) => {
-                    console.log(item,index)
+                this.iconlist.forEach((item,index) => {
                     const page = Math.floor(index / 8)
                     if(!pages[page]){
                         pages[page] = []
@@ -75,7 +77,6 @@
                     pages[page].push(item)
                     
                 })
-                console.log(pages)
                 return pages
             }
         }
