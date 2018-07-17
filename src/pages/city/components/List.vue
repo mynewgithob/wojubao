@@ -6,7 +6,7 @@
                     当前城市
                 </div>
                 <div class="button-list">
-                    <div class="button-box"><div class="button">北京</div></div>
+                    <div class="button-box"><div class="button">{{this.$store.state.city}}</div></div>
                 </div>
             </div>
             <div class="header-list border-topbottom">
@@ -14,62 +14,21 @@
                     热门城市
                 </div>
                 <div class="button-list">
-                    <div class="button-box"><div class="button">北京</div></div>   
-                    <div class="button-box"><div class="button">北京</div></div>
-                    <div class="button-box"><div class="button">北京</div></div>
-                    <div class="button-box"><div class="button">北京</div></div>
-                    <div class="button-box"><div class="button">北京</div></div>
-                    <div class="button-box"><div class="button">北京</div></div>
+                    <div class="button-box" v-for='item of hot' :key='item.id' @click='hanleCity(item.name)'>
+                        <div class="button">{{item.name}}</div>
+                    </div>   
                 </div>
             </div>
             <div class="header-list border-topbottom">
-                <div class="header-name">
-                    A
-                </div>
-                <div class="city-name">
-                    <ul class="city-list">
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                    </ul>
-                </div>
-                <div class="header-name">
-                    B
-                </div>
-                <div class="city-name">
-                    <ul class="city-list">
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                    </ul>
-                </div>
-                <div class="header-name">
-                    C
-                </div>
-                <div class="city-name">
-                    <ul class="city-list">
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                    </ul>
-                </div>
-                 <div class="header-name">
-                    D
-                </div>
-                <div class="city-name">
-                    <ul class="city-list">
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                        <li>成都</li>
-                    </ul>
+                <div v-for='(item,key) of city' :key='key' :ref='key'>
+                    <div class="header-name" >
+                        {{key}}
+                    </div>
+                    <div class="city-name" v-for='val of item' :key='val.id'>
+                        <ul class="city-list">
+                            <li @click='hanleCity(val.name)'>{{val.name}}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
        </div>
@@ -79,8 +38,27 @@
 import Bscroll from 'better-scroll'
     export default{
         name:'headerlist',
+        props:{
+            hot:Array,
+            city:Object,
+            letter:String
+        },
+        methods: {
+            hanleCity (city) {
+                this.$store.dispatch('changeCity',city)
+                this.$router.push('/')
+            }
+        },
         mounted(){
             this.scroll=new Bscroll(this.$refs.wrapper)
+        },
+        watch: {
+            letter () {
+                if(this.letter) {
+                    const element = this.$refs[this.letter][0]
+                    this.scroll.scrollToElement(element)  //调用better-scroll方法
+                }
+            }
         }
     }
 </script>

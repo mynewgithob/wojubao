@@ -1,15 +1,19 @@
 <template>
       <ul class="aple">
-          <li class="item">A</li>
-          <li class="item">A</li>
-          <li class="item">A</li>
-          <li class="item">A</li>
-
+          <li class="item" v-for='(item,key) of city' :key='item.id' @click='change'>{{key}}</li>
       </ul>
 </template>
 <script>
     export default{
-        name:'headerAple'
+        name:'headerAple',
+        props:{
+            city:Object
+        },
+        methods:{
+            change(e){
+                this.$emit('hanleChangeCity',e.target.innerHTML)
+            }
+        }
     }
 </script>
 <style lang='stylus' scoped>
@@ -17,7 +21,7 @@
     .aple
         position absolute
         right 0
-        top 2.58rem
+        top 1.18rem
         width .2rem
         display flex
         flex-direction column
