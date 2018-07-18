@@ -1,7 +1,13 @@
 <template>
     <div class="box">
         <p class="perfict">猜你喜欢</p>
-        <div class="mp-list" v-for="item in list" :key="item.id">
+        <router-link 
+           tag='div' 
+           :to="'/detail/'+item.id" 
+           class="mp-list" 
+           v-for="item in list" 
+           :key="item.id"
+        >
             <div class="listImg">
                 <img class="mp-img" :src="item.imgUrl" alt="">
             </div>
@@ -9,7 +15,7 @@
                 <p class="desc-name">{{item.title}}</p>
                 <p class="desc-ription">{{item.desc}}</p>
             </div>
-        </div>
+        </router-link>
     </div>    
 </template>
 <script>

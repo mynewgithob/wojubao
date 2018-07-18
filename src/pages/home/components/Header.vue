@@ -44,7 +44,8 @@
     color:#ccc
     text-align :center
   .header-right
-    width:.62rem
+    min-width:.62rem
+    padding 0 .04rem
     float:right
     text-align:center
     color #fff
